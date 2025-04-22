@@ -6,19 +6,22 @@ import {  useFetchMyShortUrls, useFetchTotalClicks } from '../hooks/useQuery'
 import ShortenPopUp from './ShortenPopUp'
 import { FaLink } from 'react-icons/fa'
 import ShortenUrlList from './ShortenUrlList'
+import { useNavigate } from 'react-router-dom'
+import Loader from '../components/Loader'
 const DashboardLayout = () => {
   const {token}=useStoreContext();
+  const navigate=useNavigate();
   // const refetch=false;
   const [shortenPopup,setShortenPopUp]= useState(false);
   const {isLoading, data: myShortenUrls, refetch } = useFetchMyShortUrls(token, onError)
     
   const {isLoading:loader,data:totalClciks}=useFetchTotalClicks(token,Error);
   function onError(){
-    console.log("ERROR");
+    navigate("/error")
   }
   return (
-    <div className='lg:px-14 sm:px-8  px-4 min-h[calc(100vh-64px)]'>
-      {loader ?(<p>Loading...</p>):(
+    <div className='lg:px-14 sm:px-8  px-4 min-h[calc(100vh-64px)] bg-white'>
+      {loader ?(<Loader/>):(
       <div className='lg:w-[90] w-full mx-auto py-16'>
      <div className='h-96 relative'>
      {totalClciks.length === 0 && (
@@ -35,7 +38,7 @@ const DashboardLayout = () => {
      <Graph graphData={totalClciks}></Graph>
      </div>
      <div className='py-5 sm:text-end text-center'>
-     <button className='bg-blue-500 px-4 py-2 rounded-md text-white' onClick={()=>setShortenPopUp(true)}>
+     <button className='bg-rose-700 px-4 py-2 rounded-md text-white' onClick={()=>setShortenPopUp(true)}>
       Create a New Short URL
      </button>
      </div>

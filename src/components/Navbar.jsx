@@ -18,7 +18,7 @@ const Navbar = () => {
   };
 
   return (
-    <div className="h-16 bg-purple-500  z-50 flex items-center sticky top-0 ">
+    <div className="h-16 bg-black  z-50 flex items-center sticky top-0 ">
       <div className="lg:px-14 sm:px-8 px-4 w-full flex justify-between">
         <Link to="/">
           <h1 className="font-bold text-3xl text-white italic sm:mt-0 mt-2">

@@ -25,20 +25,19 @@ const Graph = ({ graphData }) => {
 
   const data = {
     labels:
-     graphData.length > 0
+      graphData.length > 0
         ? labels
         : ["", "", "", "", "", "", "", "", "", "", "", "", "", ""],
     datasets: [
       {
         label: "Total Clicks",
         data:
-         graphData.length > 0
+          graphData.length > 0
             ? userPerDaya
             : [1, 2, 3, 4, 5, 6, 7, 6, 5, 4, 3, 2, 1],
-        backgroundColor:
-         graphData.length > 0 ? "#3b82f6" : "rgba(54, 162, 235, 0.1)",
-        borderColor: "#1D2327",
-        pointBorderColor: "red",
+        backgroundColor: graphData.length > 0 ? "#ADD8E6" : "rgba(173, 216, 230, 0.6)", // Light blue for bars
+        borderColor: "#1D2327", // Dark border color for bars
+        pointBorderColor: "red", // Red border for points (optional, since it's not showing with bars)
         fill: true,
         tension: 0.4,
         barThickness: 20,
@@ -60,7 +59,6 @@ const Graph = ({ graphData }) => {
       y: {
         beginAtZero: true,
         ticks: {
-          // stepSize: 1,
           callback: function (value) {
             if (Number.isInteger(value)) {
               return value.toString();
@@ -75,15 +73,12 @@ const Graph = ({ graphData }) => {
             family: "Arial",
             size: 16,
             weight: "bold",
-            color: "#FF0000",
+            color: "#FF0000", // Title color for Y-axis
           },
         },
       },
       x: {
         beginAtZero: true,
-        // ticks: {
-        //   stepSize: 1,
-        // },
         title: {
           display: true,
           text: "Date",
@@ -91,14 +86,14 @@ const Graph = ({ graphData }) => {
             family: "Arial",
             size: 16,
             weight: "bold",
-            color: "#FF0000",
+            color: "#FF0000", // Title color for X-axis
           },
         },
       },
     },
   };
 
-  return <Bar className=" w-full" data={data} options={options}></Bar>;
+  return <Bar className="w-full" data={data} options={options}></Bar>;
 };
 
 export default Graph;

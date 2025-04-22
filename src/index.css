@@ -3,14 +3,5 @@
 
 
 @import "tailwindcss";
-@theme{
---font-roboto:"Roboto", "sans-serif";
---font-montserrat:"Montserrat";
+@custom-variant dark (&:where(.dark, .dark *));
 
---linear-gradient:(to left, #3b82f6, #f43f5e);
---bg-card-gradient:linear-gradient(to right, #38b2ac, #4299e1);
-}
-
-.bg-custom{
-  background-color: var(--linear-gradient);
-}
