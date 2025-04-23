@@ -43,7 +43,7 @@ const CreateNewShortenForLandingPage = ({ onClose, refetch }) => {
       });
 
       reset();
-      onClose(); // ✅ Close the modal
+      onClose();
     } catch (error) {
       console.error("Failed to create short URL", error);
     } finally {
@@ -52,23 +52,22 @@ const CreateNewShortenForLandingPage = ({ onClose, refetch }) => {
   };
 
   return (
-    <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50">
-      <div className="w-full max-w-md bg-white rounded-lg shadow-xl overflow-hidden relative">
+    <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
+      <div className="w-full max-w-md bg-white rounded-md sm:rounded-lg shadow-xl relative">
 
-        {/* 🔴 Custom Close Button */}
         <button
           onClick={onClose}
-          className="absolute right-4 top-4 text-gray-700 hover:text-red-500 text-2xl transition"
+          className="absolute right-3 top-1 text-gray-700 hover:text-red-500 text-2xl transition "
           aria-label="Close Modal"
         >
           <RxCross2 />
         </button>
 
-        <form onSubmit={handleSubmit(createShortUrlHandler)} className="p-6 sm:p-8">
-          <h1 className="font-montserrat text-center font-bold text-2xl text-slate-800 mb-4">
+        <form onSubmit={handleSubmit(createShortUrlHandler)} className="p-4 sm:p-8">
+          <h1 className="font-montserrat text-center font-bold text-2xl text-slate-800 mb-2 pt-1">
             Create New Shorten Url
           </h1>
-          <hr className="border-slate-200 mb-6" />
+          <hr className="border-slate-200 mb-4" />
 
           <TextField
             label="Enter URL"
@@ -79,11 +78,12 @@ const CreateNewShortenForLandingPage = ({ onClose, refetch }) => {
             message="Url is required"
             register={register}
             errors={errors}
+            className="text-black"
           />
 
           <button
             disabled={Loading}
-            className="w-full bg-blue-600 font-semibold text-white py-2 rounded-md mt-4 hover:bg-blue-700 transition-colors"
+            className="w-full bg-green-400 font-semibold text-white py-2 rounded-md mt-4 hover:bg-green-300 transition-colors cursor-pointer"
           >
             {Loading ? "Loading..." : "Create"}
           </button>

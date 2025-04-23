@@ -49,8 +49,8 @@ const LandingPage = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.8 }}
-              onClick={dashBoardNavigateHandler}
-              className="bg-amber-500 text-white rounded-md py-2 px-6"
+              
+              className="bg-green-400 text-white rounded-md py-2 px-6"
             >
               Manage Links
             </motion.button>

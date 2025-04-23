@@ -1,5 +1,5 @@
-import React from 'react';
-import { motion } from 'framer-motion';
+import React, { useEffect, useRef, useState } from 'react';
+import { motion, useAnimation } from 'framer-motion';
 
 const testimonials = [
   {
@@ -47,33 +47,48 @@ const testimonials = [
 ];
 
 const TestimonialSection = () => {
-  const duplicatedTestimonials = [...testimonials, ...testimonials]; // Infinite loop effect
+  const duplicatedTestimonials = [...testimonials, ...testimonials];
+  const controls = useAnimation();
+  const containerRef = useRef();
+  const [paused, setPaused] = useState(false);
+
+  useEffect(() => {
+    if (!paused) {
+      controls.start({
+        x: ['0%', '-50%'],
+        transition: {
+          duration: 25,
+          ease: 'linear',
+          repeat: Infinity,
+        },
+      });
+    } else {
+      controls.stop();
+    }
+  }, [paused]);
 
   return (
     <section className="bg-black py-10 px-4 overflow-hidden relative">
-      <h2 className="text-3xl font-bold text-center text-white mb-8">What Our Users Say</h2>
+      <h2 className="text-3xl font-bold text-center text-white mb-10">What Our Users Say</h2>
 
-      {/* Blur Masks */}
-      <div className="relative overflow-hidden">
+      <div
+        className="relative overflow-hidden"
+        onMouseEnter={() => setPaused(true)}
+        onMouseLeave={() => setPaused(false)}
+        ref={containerRef}
+      >
+        {/* Fading edges */}
         <div className="absolute left-0 top-0 h-full w-24 bg-gradient-to-r from-black to-transparent z-10 pointer-events-none" />
         <div className="absolute right-0 top-0 h-full w-24 bg-gradient-to-l from-black to-transparent z-10 pointer-events-none" />
 
-        {/* Infinite Scroll */}
         <motion.div
           className="flex gap-6 w-max"
-          animate={{ x: ["0%", "-50%"] }}
-          transition={{
-            repeat: Infinity,
-            duration: 25,
-            ease: "linear",
-          }}
+          animate={controls}
         >
           {duplicatedTestimonials.map((testimonial, index) => (
             <div
               key={`${testimonial.id}-${index}`}
-              className="w-[300px] sm:w-[350px] md:w-[380px] lg:w-[350px] xl:w-[380px] min-w-[250px] h-[280px] sm:h-[320px] md:h-[350px] bg-zinc-900 p-6 rounded-xl border border-gray-700 
-              shadow-2xl hover:shadow-indigo-500/50 transition-shadow duration-300 ease-in-out 
-              flex flex-col items-center justify-center text-center"
+              className="w-[300px] sm:w-[350px] min-w-[250px] h-[280px] sm:h-[320px] bg-zinc-900 p-6 rounded-xl border border-gray-700 shadow-4xl hover:shadow-indigo-500/50 transition-shadow duration-300 ease-in-out flex flex-col items-center justify-center text-center cursor-pointer"
             >
               <img
                 src={testimonial.photo}

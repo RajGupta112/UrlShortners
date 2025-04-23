@@ -70,7 +70,7 @@ setOpen(false);
       errors={errors}
 
       />
-      <button className='bg-blue-600 font-semibold  text-white  w-32 bg-amber-500 py-2  transition-colors  rounded-md my-3 cursor-pointer'> 
+      <button className='bg-green-400 font-semibold  text-white  w-32 py-2  transition-colors  rounded-md my-3 cursor-pointer w-full'> 
         {Loading ?"Loading..." :"Create"}
       </button>
 
