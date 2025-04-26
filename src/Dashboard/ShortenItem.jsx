@@ -58,7 +58,7 @@ const ShortenItem = ({ originalUrl, shortUrl, clickCount, createdDate }) => {
         }
     }, [selectedUrl]);
 
-    // Reset copied status after 2 seconds
+    
     useEffect(() => {
         if (isCopied) {
             const timer = setTimeout(() => setIsCopied(false), 2000);
@@ -75,9 +75,9 @@ const ShortenItem = ({ originalUrl, shortUrl, clickCount, createdDate }) => {
                             target="_blank"
                             rel="noopener noreferrer"
                             className="text-[17px] font-montserrat font-[600] text-linkColor"
-                            to={`/s/${shortUrl}`}
+                            to={import.meta.env.VITE_REACT_FRONT_END_URL+"/s/"+`${shortUrl}`}
                         >
-                            {subDomain}/s/{shortUrl}
+                            {subDomain+"/s/"+`${shortUrl}`}
                         </Link>
                         <FaExternalLinkAlt className="text-linkColor" />
                     </div>
